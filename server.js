@@ -30,6 +30,10 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
 app.get ('/profile:id', (req, res) => { register.handleGetProfile(req, res, db) });
 app.put ('/image', (req, res) => { image.handleImage(req, res, db) } );
 
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`App is running on port ${process.env.PORT}`)
+})
+
 /*
 
 </>             res = this is working
