@@ -24,7 +24,7 @@ const db = knex({
     }
 });
 
-app.get ('/', (req, res) => res.send(database.users));
+app.get ('/', (req, res) => res.send('It\'s working'));
 app.post('/signin', (req, res) => { signin.handleRegister(req, res, db, bcrypt) });
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
 app.get ('/profile:id', (req, res) => { register.handleGetProfile(req, res, db) });
