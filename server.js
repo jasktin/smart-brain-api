@@ -19,10 +19,7 @@ const { Client } = require('pg');
 const db = knex({
     client: 'pg',
     connection: {
-      host: process.env.DATABASE_URL,
-      user: 'jasktintran',
-      password: '',
-      database: 'smart-brain',
+      connectionString: process.env.DATABASE_URL,
       ssl: true
     }
 });
