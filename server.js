@@ -22,11 +22,11 @@ const db = knex({
     }
 });
 
-app.get ('/', (req, res) => res.send('It\'s working'));
-app.post('/signin', (req, res) => { signin.handleRegister(req, res, db, bcrypt) });
-app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
-app.get ('/profile:id', (req, res) => { register.handleGetProfile(req, res, db) });
-app.put ('/image', (req, res) => { image.handleImage(req, res, db) } );
+app.get ('/', res.send('It\'s working'));
+app.post('/signin', signin.handleRegister(req, res, db, bcrypt));
+app.post('/register', register.handleRegister(req, res, db, bcrypt));
+app.get ('/profile:id', register.handleGetProfile(req, res, db));
+app.put ('/image', image.handleImage(req, res, db));
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(`App is running on port ${process.env.PORT}`)
