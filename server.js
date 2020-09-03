@@ -10,8 +10,9 @@ const profile = require('./controllers/profile')
 const image = require('./controllers/image')
 
 const app = express();
-app.use(bodyParser.json());
+
 app.use(cors());
+app.use(bodyParser.json());
 
 
 const db = knex({
@@ -22,14 +23,15 @@ const db = knex({
     }
 });
 
-app.get ('/', res.send('It\'s working'));
-app.post('/signin', signin.handleRegister(req, res, db, bcrypt));
-app.post('/register', register.handleRegister(req, res, db, bcrypt));
-app.get ('/profile:id', register.handleGetProfile(req, res, db));
-app.put ('/image', image.handleImage(req, res, db));
+app.get('/', (req, res)=> { res.send(db.users) })
+app.post('/signin', signin.handleSignin(db, bcrypt))
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
+app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
+app.put('/image', (req, res) => { image.handleImage(req, res, db)})
+app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`App is running on port ${process.env.PORT}`)
+app.listen(3000, ()=> {
+  console.log('app is running on port 3000');
 })
 
 /*
