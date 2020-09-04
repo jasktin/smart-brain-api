@@ -19,8 +19,11 @@ const { Client } = require('pg');
 const db = knex({
     client: 'pg',
     connection: {
-      connectionString: 'postgres://laeokamcudgheu:e68af02f4740bb6dd52e5194e5a77435563b98906e832d152d71580511a6ab58@ec2-54-146-4-66.compute-1.amazonaws.com:5432/d66gnuiceile5',
-      ssl: true
+      name: 'postgresql-flat-43489',
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false
+      }
     }
 });
 
