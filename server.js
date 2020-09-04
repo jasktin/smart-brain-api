@@ -14,12 +14,9 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const { Client } = require('pg');
-
 const db = knex({
     client: 'pg',
     connection: {
-      name: 'postgresql-flat-43489',
       connectionString: process.env.DATABASE_URL,
       ssl: {
         rejectUnauthorized: false
