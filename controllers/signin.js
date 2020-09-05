@@ -1,9 +1,3 @@
-const cors = require('cors');
-const app = express();
-
-app.use(cors());
-app.use(bodyParser.json());
-
 const handleSignin = (db, bcrypt) => (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
